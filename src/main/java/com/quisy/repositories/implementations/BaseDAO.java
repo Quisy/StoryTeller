@@ -1,4 +1,4 @@
-package com.quisy.repositories;
+package com.quisy.repositories.implementations;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
