@@ -1,7 +1,9 @@
 package com.quisy.controllers;
 
+import com.quisy.models.Role;
 import com.quisy.models.Story;
 import com.quisy.models.User;
+import com.quisy.services.interfaces.IRoleService;
 import com.quisy.services.interfaces.IStoryService;
 import com.quisy.services.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ public class UserController {
     private  IStoryService<Story> _storyService;
 
     @Autowired
+    private IRoleService<Role> _roleService;
+
+    @Autowired
     public UserController(IUserService<User> userService) {
         _userService = userService;
     }
@@ -34,6 +39,7 @@ public class UserController {
         user.setNickName("janek");
         user.setEmail("janek@janek.pl");
         user.setPassword("12345");
+        user.setRole(_roleService.getAll().get(0));
 
         Story story = new Story();
         story.setTitle("Test");
@@ -52,5 +58,11 @@ public class UserController {
     {
         return _userService.login("janek@janek.pl","12345");
 }
+
+    @RequestMapping(value="/test")
+    public String test()
+    {
+        return _roleService.getAll().get(1).getName();
+    }
 
 }

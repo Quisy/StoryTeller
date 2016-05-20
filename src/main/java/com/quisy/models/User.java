@@ -1,6 +1,9 @@
 package com.quisy.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -34,8 +37,21 @@ public class User {
     @NotNull
     private String password;
 
+    @NotNull
+    @ManyToOne
+    private Role role;
+
     @OneToMany (mappedBy = "owner")
     private List<Story> stories;
+
+
+    public User(){}
+
+    @JsonCreator
+    public User(@JsonProperty("role") Role role)
+    {
+        this.role = role;
+    }
 
     //GETTERS AND SETTERS
 
@@ -88,12 +104,21 @@ public class User {
     }
 
 
-    @JsonManagedReference
+    @JsonBackReference
     public List<Story> getStories() {
         return stories;
     }
 
     public void setStories(List<Story> stories) {
         this.stories = stories;
+    }
+
+    @JsonManagedReference
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }
