@@ -1,7 +1,6 @@
 package com.quisy.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -12,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "Roles")
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -47,7 +47,6 @@ public class Role {
         this.name = name;
     }
 
-    @JsonBackReference
     public List<User> getUsers() {
         return users;
     }

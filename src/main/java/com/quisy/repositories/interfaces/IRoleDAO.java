@@ -1,5 +1,6 @@
 package com.quisy.repositories.interfaces;
 
+import org.springframework.context.annotation.Role;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
@@ -11,5 +12,5 @@ import java.util.List;
 
 
 public interface IRoleDAO<T> extends IBaseDAO<T> {
-
+        T getByName(String name);
 }

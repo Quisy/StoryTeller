@@ -10,4 +10,6 @@ import java.util.List;
 
 public interface IRoleService<T> {
     List<Role> getAll();
+
+    Role getByName(String name);
 }

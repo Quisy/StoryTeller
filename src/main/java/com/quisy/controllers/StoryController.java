@@ -38,6 +38,7 @@ public class StoryController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public Story add(@RequestBody Story story) {
+        _storyService.create(story);
         return story;
     }
 

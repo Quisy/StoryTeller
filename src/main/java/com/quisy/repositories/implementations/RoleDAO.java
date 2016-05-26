@@ -19,4 +19,9 @@ public class RoleDAO extends BaseDAO<Role> implements IRoleDAO<Role> {
     protected RoleDAO() {
         super(Role.class);
     }
+
+    @Override
+    public Role getByName(String name) {
+        return getByParameter("Name", name).get(0);
+    }
 }

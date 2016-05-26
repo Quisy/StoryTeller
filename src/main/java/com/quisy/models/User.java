@@ -1,9 +1,6 @@
 package com.quisy.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -15,6 +12,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "Users")
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,6 +33,7 @@ public class User {
             @Length(max = 50, message = "The field must be less than 50 characters")
     })
     @NotNull
+    @JsonIgnore
     private String password;
 
     @NotNull
@@ -104,7 +103,6 @@ public class User {
     }
 
 
-    @JsonBackReference
     public List<Story> getStories() {
         return stories;
     }
@@ -113,7 +111,6 @@ public class User {
         this.stories = stories;
     }
 
-    @JsonManagedReference
     public Role getRole() {
         return role;
     }

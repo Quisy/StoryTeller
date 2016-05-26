@@ -1,6 +1,9 @@
 package com.quisy.services.implementations;
 
+import com.quisy.models.Role;
 import com.quisy.models.User;
+import com.quisy.models.UserRegisterViewModel;
+import com.quisy.repositories.interfaces.IRoleDAO;
 import com.quisy.repositories.interfaces.IUserDAO;
 import com.quisy.services.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +20,12 @@ import javax.transaction.Transactional;
 public class UserService implements IUserService<User> {
 
     private final IUserDAO<User> _userRepository;
+    private final IRoleDAO<Role> _roleRepository;
 
     @Autowired
-    public UserService(IUserDAO<User> userRepository){
+    public UserService(IUserDAO<User> userRepository, IRoleDAO<Role> roleRepository){
         _userRepository = userRepository;
+        _roleRepository = roleRepository;
     }
 
 
@@ -36,7 +41,16 @@ public class UserService implements IUserService<User> {
     }
 
     @Override
-    public String register(User user) {
+    public String register(UserRegisterViewModel registeredUser) {
+
+        User user = new User();
+        user.setName(registeredUser.getName());
+        user.setSurname(registeredUser.getSurname());
+        user.setEmail(registeredUser.getEmail());
+        user.setNickName(registeredUser.getNickName());
+        user.setPassword(registeredUser.getPassword());
+        user.setRole(_roleRepository.getByName("user"));
+
         try {
             if (_userRepository.getByParameter("email", user.getEmail()).size() == 0) {
                 _userRepository.add(user);

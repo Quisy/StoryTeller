@@ -10,6 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Stories")
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class Story {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -47,7 +48,6 @@ public class Story {
         this.id = id;
     }
 
-    @JsonManagedReference
     public User getOwner() {
         return owner;
     }
