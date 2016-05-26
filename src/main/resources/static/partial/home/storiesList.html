@@ -1,0 +1,26 @@
+﻿<div class="row storiesList center">
+    <div class="col-sm-12">
+        <div class="row story" ng-repeat="story in filteredStories">
+            <div class="col-sm-12">
+                <h2>{{story.title}}</h2>
+                <h4>Author, date</h4>
+                <hr />
+            </div>
+            <div class="col-sm-12 text">
+                <p>{{story.content}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 text-center">
+
+        <uib-pagination total-items="stories.length" items-per-page="numPerPage" max-size="maxSize" ng-model="currentPage" ng-change="pageChanged()"></uib-pagination>
+
+    </div>
+</div>
+
+
+
+
+<div class="test">
+    sdad
+</div>
