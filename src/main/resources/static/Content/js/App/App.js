@@ -1,4 +1,4 @@
-﻿var App = angular.module('App', ['ngRoute','ui.bootstrap']);
+﻿var App = angular.module('App', ['ngRoute','ui.bootstrap', 'ngResource', 'ngStorage']);
 
 
 //Config
@@ -12,4 +12,6 @@ App.controller('userController', UserController);
 
 //Services
 App.factory('storyService', StoryService);
+App.factory('userService', UserService);
+App.factory('authenticationService', AuthenticationService);
 

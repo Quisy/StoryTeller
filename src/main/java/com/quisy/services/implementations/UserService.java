@@ -41,7 +41,7 @@ public class UserService implements IUserService<User> {
     }
 
     @Override
-    public String register(UserRegisterViewModel registeredUser) {
+    public User register(UserRegisterViewModel registeredUser) {
 
         User user = new User();
         user.setName(registeredUser.getName());
@@ -50,17 +50,18 @@ public class UserService implements IUserService<User> {
         user.setNickName(registeredUser.getNickName());
         user.setPassword(registeredUser.getPassword());
         user.setRole(_roleRepository.getByName("user"));
+        registeredUser.setRole("user");
 
         try {
             if (_userRepository.getByParameter("email", user.getEmail()).size() == 0) {
                 _userRepository.add(user);
-                return "User added";
+                return user;
             } else {
-                return "Email already in use!";
+                return null;
             }
         }
         catch (Exception ex) {
-            return "Error: " + ex.toString();
+            return null;
         }
 
     }

@@ -12,12 +12,12 @@
         .when('/login',
         {
             templateUrl: 'partial/user/register.html',
-            controller: 'indexController'
+            controller: 'userController'
         })
          .when('/register',
         {
             templateUrl: 'partial/user/register.html',
-            controller: 'indexController'
+            controller: 'userController'
         })
         .otherwise({
             redirectTo: '/',

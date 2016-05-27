@@ -7,7 +7,7 @@ import com.quisy.models.UserRegisterViewModel;
  */
 public interface IUserService<T> {
     T login(String email, String password);
-    String register(UserRegisterViewModel user);
+    T register(UserRegisterViewModel user);
     void update(T entity);
     void delete(T entity);
 }

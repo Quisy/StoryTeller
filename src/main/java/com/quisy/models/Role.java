@@ -20,6 +20,7 @@ public class Role {
     @Column(unique=true, nullable=false)
     private String name;
 
+    @JsonIgnore
     @OneToMany (mappedBy = "role")
     private List<User> users;
 

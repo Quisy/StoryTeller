@@ -1,23 +1,16 @@
 package com.quisy.controllers;
 
-import com.quisy.models.Role;
-import com.quisy.models.Story;
 import com.quisy.models.User;
 import com.quisy.models.UserRegisterViewModel;
-import com.quisy.services.interfaces.IRoleService;
-import com.quisy.services.interfaces.IStoryService;
 import com.quisy.services.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by lampr on 17.05.2016.
  */
 @RestController
-@RequestMapping(value="/users")
+@RequestMapping(value="/api/users")
 public class UserController {
 
     private final IUserService<User> _userService;
@@ -29,16 +22,16 @@ public class UserController {
 
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String register(@RequestBody UserRegisterViewModel user) {
+    public User register(@RequestBody UserRegisterViewModel user) {
         return _userService.register(user);
     }
 
 
-    @RequestMapping(value="/login")
-    public User login()
+    @RequestMapping(value="/login/{email}/{password}")
+    public User login(@PathVariable(value="email") String email, @PathVariable(value="password") String password)
     {
-        return _userService.login("janek@janek.pl","12345");
-}
+        return _userService.login(email,password);
+    }
 
 
 

@@ -6,14 +6,14 @@
             <form>
                 <div class="form-group">
                     <label for="emailLogin">Email address</label>
-                    <input type="email" class="form-control" id="emailLogin" placeholder="Email">
+                    <input type="email" class="form-control" id="emailLogin"  ng-model="loginData.email" placeholder="Email">
                 </div>
                 <div class="form-group">
                     <label for="passwordLogin">Password</label>
-                    <input type="password" class="form-control" id="passwordLogin" placeholder="Password">
+                    <input type="password" class="form-control" id="passwordLogin" ng-model="loginData.password" placeholder="Password">
                 </div>
 
-                <button type="submit" class="btn btn-default">Login</button>
+                <button type="submit" class="btn btn-default" ng-click="login()">Login</button>
             </form>
         </div>
     </div>
@@ -24,25 +24,25 @@
             <form>
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Name">
+                    <input type="text" class="form-control" id="name" ng-model="newUser.name" placeholder="Name">
                 </div>
                 <div class="form-group">
                     <label for="surname">Password</label>
-                    <input type="text" class="form-control" id="surname" placeholder="Surname">
+                    <input type="text" class="form-control" id="surname" ng-model="newUser.surname" placeholder="Surname">
                 </div>
                 <div class="form-group">
                     <label for="nickname">Nickname</label>
-                    <input type="text" class="form-control" id="nickname" placeholder="Nickname">
+                    <input type="text" class="form-control" id="nickname" ng-model="newUser.nickName" placeholder="Nickname">
                 </div>
                 <div class="form-group">
                     <label for="emailRegister">Email address</label>
-                    <input type="email" class="form-control" id="emailRegister" placeholder="Email">
+                    <input type="email" class="form-control" id="emailRegister" ng-model="newUser.email" placeholder="Email">
                 </div>
                 <div class="form-group">
                     <label for="passwordRegister">Password</label>
-                    <input type="password" class="form-control" id="passwordRegister" placeholder="Password">
+                    <input type="password" class="form-control" id="passwordRegister" ng-model="newUser.password" placeholder="Password">
                 </div>
-                <button type="submit" class="btn btn-default">Register</button>
+                <button type="submit" class="btn btn-default" ng-click="register()">Register</button>
             </form>
         </div>
     </div>

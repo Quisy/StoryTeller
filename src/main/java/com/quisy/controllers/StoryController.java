@@ -12,7 +12,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping(value="/story")
+@RequestMapping(value="/api/story")
 public class StoryController {
 
     private final IStoryService<Story> _storyService;
