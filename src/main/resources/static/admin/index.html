@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html ng-app="AdminModule" ng-controller="indexController">
+<head>
+    <meta charset="UTF-8">
+    <link href="../Content/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../Content/css/adminStyle.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-top topBar">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://localhost:8080/">Story Teller</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="http://localhost:8080/">Home</a></li>
+
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="menuCol col-sm-2 col-xs-12 col-left">
+            <div class="list-group menu-left">
+                <a href="#/users" class="list-group-item"><span class="glyphicon glyphicon-user"></span> Użytkownicy</a>
+            </div>
+        </div>
+        <div class="maxHeight col-sm-10 col-xs-12 col-center content">
+            <ng-view></ng-view>
+        </div>
+
+    </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script src="../Content/js/bootstrap.min.js"></script>
+
+<script src="../Content/js/Angular/angular.min.js"></script>
+
+<script src="http://nervgh.github.io/js/es5-shim.min.js"></script>
+<script src="http://nervgh.github.io/js/es5-sham.min.js"></script>
+
+<script src="../Content/js/Angular/ngStorage.min.js"></script>
+
+<script src="../Content/js/Angular/angular-route.min.js"></script>
+<script src="../Content/js/Angular/angular-resource.min.js"></script>
+<script src="../Content/js/Angular/restangular.min.js"></script>
+<script src="../Content/js/Angular/angular-animate.min.js"></script>
+<script src="../Content/js/Angular/angular-sanitize.min.js"></script>
+<script src="../Content/js/Angular/angular-strap.min.js"></script>
+<script src="../Content/js/Angular/angular-strap.tpl.min.js"></script>
+
+<script src="../Content/js/App/Services/StoryService.js"></script>
+<script src="../Content/js/App/Services/UserService.js"></script>
+<script src="../Content/js/App/Services/AuthenticationService.js"></script>
+<script src="../Content/js/App/Controllers/UserController.js"></script>
+<script src="../Content/js/App/Controllers/IndexController.js"></script>
+
+<script src="../Content/js/App/Utils/RoutesAdmin.js"></script>
+<script src="../Content/js/App/Admin.js"></script>
+
+<script src="Scripts/App/Modules/FileUpload/console-sham.js"></script>
+<script src="Scripts/App/Modules/FileUpload/angular-file-upload.js"></script>
+<script src="Scripts/App/Modules/FileUpload/directives.js"></script>
+
+</body>
+</html>

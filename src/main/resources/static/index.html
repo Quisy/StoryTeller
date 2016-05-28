@@ -27,7 +27,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li ng-hide="userLogInfo.isLogged"><a href="#/login">Login</a></li>
                     <li ng-hide="userLogInfo.isLogged"><a href="#/register">Register</a></li>
-                    <li ng-show="userLogInfo.isAdmin"><a href="#/register">ADMIN</a></li>
+                    <li ng-show="userLogInfo.isAdmin"><a href="/admin/index.html">ADMIN</a></li>
                     <li ng-show="userLogInfo.isLogged" class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -56,10 +56,10 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 
-    <script src="Content/js/angular.min.js"></script>
-    <script src="Content/js/angular-route.min.js"></script>
-    <script src="Content/js/angular-resource.min.js"></script>
-    <script src="Content/js/ngStorage.min.js"></script>
+    <script src="Content/js/Angular/angular.min.js"></script>
+    <script src="Content/js/Angular/angular-route.min.js"></script>
+    <script src="Content/js/Angular/angular-resource.min.js"></script>
+    <script src="Content/js/Angular/ngStorage.min.js"></script>
 
     <script src="Content/js/bootstrap.min.js"></script>
 
@@ -77,22 +77,5 @@
     <script src="Content/js/App/App.js"></script>
 
 
-
-    <!-- <script type="text/javascript">
-        $(document).ready(function () {
-            $('#content').load('partial/user/details.html');
-            console.log("hehe");
-        });
-
-        function goMainPage() {
-            $('#content').load('partial/home/storiesList.html');
-            console.log("hehe");
-        };
-
-        function goLoginPage() {
-            $('#content').load('partial/user/register.html');
-            console.log("hehe");
-        };
-    </script>-->
 </body>
 </html>
