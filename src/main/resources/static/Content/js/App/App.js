@@ -9,6 +9,7 @@ App.config(RoutesConfig);
 
 //Controllers
 App.controller('indexController', IndexController);
+App.controller('loginController', LoginController);
 App.controller('storyController', StoryController);
 App.controller('userController', UserController);
 

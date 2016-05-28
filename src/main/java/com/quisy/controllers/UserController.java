@@ -33,6 +33,12 @@ public class UserController {
         return _userService.login(email,password);
     }
 
+    @RequestMapping(value="/info/{id}")
+    public User getInfo(@PathVariable(value="id") long id)
+    {
+        return _userService.getInfo(id);
+    }
+
 
 
 }

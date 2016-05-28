@@ -1,7 +1,10 @@
 package com.quisy.services.implementations;
 
 import com.quisy.models.Story;
+import com.quisy.models.StoryAddViewModel;
+import com.quisy.models.User;
 import com.quisy.repositories.interfaces.IStoryDAO;
+import com.quisy.repositories.interfaces.IUserDAO;
 import com.quisy.services.interfaces.IStoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,16 +21,22 @@ import java.util.List;
 public class StoryService implements IStoryService<Story>{
 
     private final IStoryDAO<Story> _storyRepository;
+    private final IUserDAO<User> _userRepository;
 
     @Autowired
-    public StoryService(IStoryDAO<Story> storyRepository)
+    public StoryService(IStoryDAO<Story> storyRepository,IUserDAO<User> userRepository)
     {
         _storyRepository = storyRepository;
+        _userRepository = userRepository;
     }
 
     @Override
-    public void create(Story story) {
-        _storyRepository.add(story);
+    public void create(StoryAddViewModel story) {
+        Story newStory = new Story();
+        newStory.setTitle(story.getTitle());
+        newStory.setText(story.getText());
+        newStory.setOwner(_userRepository.getById(story.getUserId()));
+        _storyRepository.add(newStory);
     }
 
     @Override
@@ -48,5 +57,10 @@ public class StoryService implements IStoryService<Story>{
     @Override
     public Story getById(long id) {
         return _storyRepository.getById(id);
+    }
+
+    @Override
+    public List<Story> getForUser(long userId) {
+        return _storyRepository.getByParameter("owner_id", String.valueOf(userId));
     }
 }

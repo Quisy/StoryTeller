@@ -4,6 +4,8 @@
 
 var AuthenticationService =  function ($rootScope,$resource, $localStorage, $sessionStorage) {
 
+    var session = $sessionStorage;
+
     return {
         saveUserData: function(user)
         {
@@ -15,7 +17,6 @@ var AuthenticationService =  function ($rootScope,$resource, $localStorage, $ses
             userInfo.NickName = user.nickName;
             userInfo.Role  = user.role.name;
             $sessionStorage.userInfo = angular.toJson(userInfo);
-            console.log($sessionStorage.userInfo);
             $rootScope.userLogInfo = {
                 isLogged: true,
                 isAdmin: userInfo.Role == 'admin'
@@ -23,26 +24,34 @@ var AuthenticationService =  function ($rootScope,$resource, $localStorage, $ses
         },
         isAdmin: function()
         {
-            if ($sessionStorage.userInfo == null)
+            if (session.userInfo == null)
                 return false;
 
-            var user = angular.fromJson($sessionStorage.userInfo);
+            var user = angular.fromJson(session.userInfo);
 
             return user.Role == 'admin';
 
         },
         isLogged: function()
         {
-            return $sessionStorage.userInfo != null;
+            return session.userInfo != null;
         },
         logout: function()
         {
-            delete $sessionStorage.userInfo;
+            delete session.userInfo;
             $rootScope.userLogInfo = {
                 isLogged: false,
                 isAdmin: false
             };
+        },
+        getUserId: function()
+        {
+            if (session.userInfo == null)
+                return null;
+
+            return angular.fromJson(session.userInfo).Id;
         }
+
 
     };
 };

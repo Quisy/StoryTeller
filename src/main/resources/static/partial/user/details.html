@@ -1,59 +1,65 @@
 ﻿<div class="row detailsForm center">
     <div class="col-md-12">
         <h2>My account</h2>
-        <hr />
+        <hr/>
         <div class="row">
-            <div class="col-lg-3 col-md-6 text-center">
-                <img class="img-circle" src="http://placehold.it/200x200" />
+            <div class="col-lg-6 col-md-6 text-center">
+                <img class="img-circle" src="http://placehold.it/200x200"/>
                 <button type="button" class="btn btn-default">Change photo</button>
             </div>
-            <div class="col-lg-4 col-md-6">
-                <form>
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <label class="form-control" id="name">Name</label>
-                    </div>
-                    <div class="form-group">
-                        <label for="surname">Surname</label>
-                        <label class="form-control" id="surname">Surname</label>
-                    </div>
-                    <div class="form-group">
-                        <label for="nickname">Nickname</label>
-                        <label class="form-control" id="nickname">Nickname</label>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <label class="form-control" id="email">Email</label>
-                    </div>
-                </form>
+            <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <label class="form-control" id="name">{{user.name}}</label>
+                </div>
+                <div class="form-group">
+                    <label for="surname">Surname</label>
+                    <label class="form-control" id="surname">{{user.surname}}</label>
+                </div>
+                <div class="form-group">
+                    <label for="nickname">Nickname</label>
+                    <label class="form-control" id="nickname">{{user.nickName}}</label>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <label class="form-control" id="email">{{user.email}}</label>
+                </div>
+            </div>
+            <div class="col-lg-6 col-lg-offset-6">
+                <button type="button" class="btn btn-primary">Edit</button>
             </div>
         </div>
     </div>
     <div class="col-md-12">
         <h2>Stories</h2>
-        <hr />
+        <hr/>
+        <Label>Search: <input type="text" class="form-control" ng-model="searchText"
+                              placeholder="Search for..."></Label>
+        <a href="#/story/add" class="btn btn-primary">Add new</a>
         <table class="table table-striped">
             <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Date</th>
-                    <th>Content</th>
-                    <th></th>
-                </tr>
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Content</th>
+                <th></th>
+            </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="story in filteredStories">
-                    <td>{{story.title}}</td>
-                    <td>data</td>
-                    <td>{{story.content | limitTo: 50}}...</td>
-                    <td>
-                        <button type="button" class="btn btn-info">Details</button>
-                    </td>
-                </tr>
+            <tr ng-repeat="story in filteredStories | filter:searchText"
+            ">
+            <td>{{story.title}}</td>
+            <td>data</td>
+            <td>{{story.text | limitTo: 50}}...</td>
+            <td>
+                <button type="button" class="btn btn-info">Details</button>
+            </td>
+            </tr>
             </tbody>
         </table>
         <div class="text-center">
-             <uib-pagination total-items="stories.length" items-per-page="numPerPage" max-size="maxSize" ng-model="currentPage" ng-change="pageChanged()"></uib-pagination>
+            <uib-pagination total-items="stories.length" items-per-page="numPerPage" max-size="maxSize"
+                            ng-model="currentPage" ng-change="pageChanged()"></uib-pagination>
         </div>
     </div>
 </div>

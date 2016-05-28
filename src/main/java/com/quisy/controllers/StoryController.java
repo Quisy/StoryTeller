@@ -1,8 +1,10 @@
 package com.quisy.controllers;
 
 import com.quisy.models.Story;
+import com.quisy.models.StoryAddViewModel;
 import com.quisy.services.interfaces.IStoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,8 +28,7 @@ public class StoryController {
     @RequestMapping(value="/get", method=RequestMethod.GET)
     @ResponseBody
     public List<Story> getAll() {
-        List<Story> stories = _storyService.getAll();
-        return stories;
+        return _storyService.getAll();
     }
 
     @RequestMapping(value="/get/{id}", method=RequestMethod.GET)
@@ -36,17 +37,23 @@ public class StoryController {
         return "dupa";
     }
 
-//    @RequestMapping(value="/get/{id}", method=RequestMethod.GET)
-//    @ResponseBody
-//    public String getById(@PathVariable(value="id") int id) {
-//        return "dupa";
-//    }
+    @RequestMapping(value="/getUsers/{id}", method=RequestMethod.GET)
+    @ResponseBody
+    public List<Story> getUsersStories(@PathVariable(value="id") long userId) {
+        return _storyService.getForUser(userId);
+    }
 
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public Story add(@RequestBody Story story) {
-        _storyService.create(story);
-        return story;
+    public ResponseEntity add(@RequestBody StoryAddViewModel story) {
+        try{
+            _storyService.create(story);
+            return  ResponseEntity.ok(null);
+        }
+        catch(Exception ex)
+        {
+            return (ResponseEntity) ResponseEntity.notFound();
+        }
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)

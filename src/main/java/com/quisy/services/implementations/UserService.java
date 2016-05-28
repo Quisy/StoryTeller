@@ -75,4 +75,9 @@ public class UserService implements IUserService<User> {
     public void delete(User user) {
         _userRepository.delete(user);
     }
+
+    @Override
+    public User getInfo(long id) {
+       return _userRepository.getById(id);
+    }
 }

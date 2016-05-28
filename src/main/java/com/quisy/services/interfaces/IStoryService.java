@@ -1,6 +1,7 @@
 package com.quisy.services.interfaces;
 
 import com.quisy.models.Story;
+import com.quisy.models.StoryAddViewModel;
 
 import java.util.List;
 
@@ -9,9 +10,10 @@ import java.util.List;
  */
 public interface IStoryService<T> {
 
-    void create(T entity);
+    void create(StoryAddViewModel entity);
     void delete(T entity);
     void update(T entity);
     List<Story> getAll();
     Story getById(long id);
+    List<Story> getForUser(long userId);
 }
