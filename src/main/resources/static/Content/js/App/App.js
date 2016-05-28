@@ -1,6 +1,9 @@
 ﻿var App = angular.module('App', ['ngRoute','ui.bootstrap', 'ngResource', 'ngStorage']);
 
 
+//Values
+App.value('userLog', { isLogged: false, isAdmin: false});
+
 //Config
 App.config(RoutesConfig);
 

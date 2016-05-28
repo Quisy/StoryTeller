@@ -22,19 +22,22 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#/">Home</a></li>
-                    <li class="dropdown">
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li ng-hide="userLogInfo.isLogged"><a href="#/login">Login</a></li>
+                    <li ng-hide="userLogInfo.isLogged"><a href="#/register">Register</a></li>
+                    <li ng-show="userLogInfo.isAdmin"><a href="#/register">ADMIN</a></li>
+                    <li ng-show="userLogInfo.isLogged" class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#/user/details">Details</a></li>
                             <li role="separator" class="divider"></li>
                             <li class="dropdown-header">Nav header</li>
-                            <li><a href="#">Logout</a></li>
+                            <li ng-click="logout()"><a href="#/">Logout</a></li>
                         </ul>
                     </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#/login">Login</a></li>
-                    <li><a href="#/register">Register</a></li>
+                    <li ng-click="logout()" ng-show="userLogInfo.isLogged"><a href="#/">Logout</a></li>
                 </ul>
             </div>
             <!--/.nav-collapse -->

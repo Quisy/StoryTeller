@@ -1,5 +1,10 @@
-﻿var StoryController = function ($scope, storyService, $log) {
+﻿var StoryController = function ($scope, storyService, $log, authenticationService) {
     $scope.stories = storyService.get();
+
+
+    
+
+    // STORIES PAGING
 
     $scope.filteredStories = []
     ,$scope.currentPage = 1

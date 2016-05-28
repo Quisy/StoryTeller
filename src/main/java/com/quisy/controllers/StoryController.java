@@ -32,9 +32,16 @@ public class StoryController {
 
     @RequestMapping(value="/get/{id}", method=RequestMethod.GET)
     @ResponseBody
-    public String getAll(@PathVariable(value="id") int id) {
+    public String getById(@PathVariable(value="id") int id) {
         return "dupa";
     }
+
+//    @RequestMapping(value="/get/{id}", method=RequestMethod.GET)
+//    @ResponseBody
+//    public String getById(@PathVariable(value="id") int id) {
+//        return "dupa";
+//    }
+
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public Story add(@RequestBody Story story) {

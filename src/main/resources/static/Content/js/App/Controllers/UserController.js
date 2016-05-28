@@ -1,18 +1,28 @@
-﻿var UserController = function ($scope, storyService, $log, userService) {
+﻿var UserController = function ($scope, storyService, $log, userService, authenticationService, $location, $route) {
     $scope.stories = storyService.get();
     $scope.newUser = {};
     $scope.loginData = {};
 
 
-    //REGISTER METHOD
     $scope.register = function register()
     {
-        userService.register($scope.newUser);
+        var user = userService.register($scope.newUser);
+        user.$promise.then(function(){
+            authenticationService.saveUserData(user);
+            console.log(user);
+            $location.path("/");
+        });
     };
+
 
     $scope.login = function login()
     {
-        userService.login($scope.loginData.email, $scope.loginData.password);
+        var user = userService.login($scope.loginData.email, $scope.loginData.password);
+        user.$promise.then(function(){
+            authenticationService.saveUserData(user);
+            console.log(user);
+            $location.path("/");
+        });
     };
 
 
