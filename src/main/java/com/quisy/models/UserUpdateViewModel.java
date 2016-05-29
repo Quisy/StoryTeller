@@ -17,6 +17,16 @@ public class UserUpdateViewModel {
 
     private Role role;
 
+    private byte[] avatar;
+
+    public byte[] getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(byte[] avatar) {
+        this.avatar = avatar;
+    }
+
     public long getId() {
         return id;
     }

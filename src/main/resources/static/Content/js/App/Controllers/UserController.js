@@ -4,6 +4,9 @@
     $scope.user = {};
     $scope.roles = roleService.getAll();
 
+    $scope.avatar = {};
+    $scope.avatar.src = "";
+
     var init = function () {
         if (!authenticationService.isLogged())
             $window.location.href = '/';
@@ -15,7 +18,24 @@
 
     init();
 
+
+    $scope.uploadFile = function() {
+        var fd = new FormData();
+        //Take the first selected file
+        console.log($scope.avatar);
+        fd.append("file", $scope.avatar);
+        console.log(fd);
+        userService.uploadAvatar(fd,authenticationService.getUserId());
+
+        // $http.post(uploadUrl, fd, {
+        //     withCredentials: true,
+        //     headers: {'Content-Type': undefined },
+        //     transformRequest: angular.identity
+        // }).success( ...all right!... ).error( ..damn!... );
+
+    };
     
+
     $scope.getUsers = function()
     {
         $scope.users = userService.getAll();

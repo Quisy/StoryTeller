@@ -9,8 +9,11 @@ import com.quisy.repositories.interfaces.IUserDAO;
 import com.quisy.services.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.transaction.Transactional;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -77,6 +80,18 @@ public class UserService implements IUserService<User> {
         updatedUser.setNickName(user.getNickName());
         updatedUser.setRole(_roleRepository.getByName(user.getRole().getName()));
         _userRepository.update(updatedUser);
+    }
+
+    @Override
+    public void updateAvatar(MultipartFile file, long userId) {
+        try {
+            User user = _userRepository.getById(userId);
+            byte[] fileBytes = file.getBytes();
+            user.setAvatar(fileBytes);
+            _userRepository.update(user);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

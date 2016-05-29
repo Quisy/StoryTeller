@@ -28,6 +28,9 @@ public class User {
     @NotNull
     private String nickName;
 
+
+    private byte[] avatar;
+
     @Length.List({
             @Length(min = 5, message = "The field must be at least 5 characters"),
             @Length(max = 50, message = "The field must be less than 50 characters")
@@ -86,6 +89,14 @@ public class User {
         this.surname = surname;
     }
 
+    public byte[] getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(byte[] avatar) {
+        this.avatar = avatar;
+    }
+
     public String getName() {
         return name;
     }
@@ -118,4 +129,6 @@ public class User {
     public void setRole(Role role) {
         this.role = role;
     }
+
+
 }

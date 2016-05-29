@@ -17,6 +17,12 @@ var UserService =  function ($resource, authenticationService) {
         },
         update : {
             method:'POST'
+        },
+        uploadAvatar : {
+            method:'POST',
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+            // headers: {enctype:'multipart/form-data'}
         }
     });
 
@@ -41,8 +47,10 @@ var UserService =  function ($resource, authenticationService) {
             return userResource.getAll({action:'get'});
         },
         update: function (user, success, error) {
-            console.log(user);
             return userResource.update({action:'update', id:null}, user);
+        },
+        uploadAvatar: function (file, userId, success, error) {
+            return userResource.uploadAvatar({action:'uploadAvatar', id:userId}, file);
         }
     };
 };

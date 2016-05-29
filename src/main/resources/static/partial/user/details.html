@@ -4,8 +4,9 @@
         <hr/>
         <div class="row">
             <div class="col-lg-6 col-md-6 text-center">
-                <img class="img-circle" src="http://placehold.it/200x200"/>
-                <button type="button" class="btn btn-default">Change photo</button>
+                <img class="img-circle" src="data:image/png;base64,{{user.avatar}}"/>
+                <input type="file" file-model="avatar"/>
+                <button type="button" class="btn btn-default" ng-click="uploadFile()">Change photo</button>
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="form-group">
