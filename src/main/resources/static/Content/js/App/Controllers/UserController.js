@@ -27,11 +27,7 @@
         console.log(fd);
         userService.uploadAvatar(fd,authenticationService.getUserId());
 
-        // $http.post(uploadUrl, fd, {
-        //     withCredentials: true,
-        //     headers: {'Content-Type': undefined },
-        //     transformRequest: angular.identity
-        // }).success( ...all right!... ).error( ..damn!... );
+        $window.location.reload();
 
     };
     
