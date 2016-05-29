@@ -1,8 +1,10 @@
 package com.quisy.models;
 
 import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by lampr on 18.05.2016.
@@ -10,7 +12,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Stories")
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="id")
 public class Story {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,8 +23,10 @@ public class Story {
     private String text;
 
 
+
     //@JoinColumn(name="ownerId")
     @ManyToOne
+    @JsonIgnore
     private User owner;
 
 //    @Column(name="ownerId", updatable=false, insertable=false)
@@ -31,10 +35,10 @@ public class Story {
 
     public Story(){}
 
-    @JsonCreator
-    public Story(@JsonProperty("owner") User owner){
-        this.owner = owner;
-    }
+//    @JsonCreator
+//    public Story(@JsonProperty("owner") User owner){
+//        this.owner = owner;
+//    }
 
 
     // GETTERS AND SETTERS
@@ -71,6 +75,7 @@ public class Story {
     public void setTitle(String title) {
         this.title = title;
     }
+
 
 //    public Long getOwnerId() {
 //        return ownerId;

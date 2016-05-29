@@ -11,7 +11,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "Roles")
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="id")
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -3,6 +3,7 @@ package com.quisy.services.implementations;
 import com.quisy.models.Role;
 import com.quisy.models.User;
 import com.quisy.models.UserRegisterViewModel;
+import com.quisy.models.UserUpdateViewModel;
 import com.quisy.repositories.interfaces.IRoleDAO;
 import com.quisy.repositories.interfaces.IUserDAO;
 import com.quisy.services.interfaces.IUserService;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 /**
  * Created by lampr on 17.05.2016.
@@ -53,7 +55,7 @@ public class UserService implements IUserService<User> {
         registeredUser.setRole("user");
 
         try {
-            if (_userRepository.getByParameter("email", user.getEmail()).size() == 0) {
+            if (_userRepository.getByParameter("email", user.getEmail()).size() == 0 && _userRepository.getByParameter("nickName", user.getNickName()).size() == 0) {
                 _userRepository.add(user);
                 return user;
             } else {
@@ -67,8 +69,14 @@ public class UserService implements IUserService<User> {
     }
 
     @Override
-    public void update(User user) {
-        _userRepository.update(user);
+    public void update(UserUpdateViewModel user) {
+        User updatedUser = _userRepository.getById(user.getId());
+        updatedUser.setName(user.getName());
+        updatedUser.setSurname(user.getSurname());
+        updatedUser.setEmail(user.getEmail());
+        updatedUser.setNickName(user.getNickName());
+        updatedUser.setRole(_roleRepository.getByName(user.getRole().getName()));
+        _userRepository.update(updatedUser);
     }
 
     @Override
@@ -79,5 +87,10 @@ public class UserService implements IUserService<User> {
     @Override
     public User getInfo(long id) {
        return _userRepository.getById(id);
+    }
+
+    @Override
+    public List<User> getAll() {
+        return _userRepository.getAll();
     }
 }

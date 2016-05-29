@@ -1,5 +1,6 @@
 package com.quisy.services.implementations;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.quisy.models.Story;
 import com.quisy.models.StoryAddViewModel;
 import com.quisy.models.User;

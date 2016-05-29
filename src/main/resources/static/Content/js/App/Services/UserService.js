@@ -10,6 +10,13 @@ var UserService =  function ($resource, authenticationService) {
         },
         getInfo : {
             method:'GET'
+        },
+        getAll : {
+            method:'GET',
+            isArray:true
+        },
+        update : {
+            method:'POST'
         }
     });
 
@@ -22,25 +29,20 @@ var UserService =  function ($resource, authenticationService) {
 
     return {
         register: function (user, success, error) {
-            return userResource.register({action:'register'}, user, function(data) {
-                console.log(data);
-            }, function(error) {
-                console.log(error)
-            });
+            return userResource.register({action:'register'}, user);
         },
         login: function (email, password, success, error) {
-            return loginResource.login({email:email, password:password}, function(data) {
-                console.log(data);
-            }, function(error) {
-                console.log(error)
-            });
+            return loginResource.login({email: email, password: password});
         },
         getInfo: function (userId, success, error) {
-            return userResource.getInfo({action:'info', id:userId}, function(data) {
-                console.log(data);
-            }, function(error) {
-                console.log(error)
-            });
+            return userResource.getInfo({action:'info', id:userId});
+        },
+        getAll: function (success, error) {
+            return userResource.getAll({action:'get'});
+        },
+        update: function (user, success, error) {
+            console.log(user);
+            return userResource.update({action:'update', id:null}, user);
         }
     };
 };

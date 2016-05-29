@@ -2,9 +2,14 @@ package com.quisy.controllers;
 
 import com.quisy.models.User;
 import com.quisy.models.UserRegisterViewModel;
+import com.quisy.models.UserUpdateViewModel;
 import com.quisy.services.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Created by lampr on 17.05.2016.
@@ -28,9 +33,13 @@ public class UserController {
 
 
     @RequestMapping(value="/login/{email}/{password}")
-    public User login(@PathVariable(value="email") String email, @PathVariable(value="password") String password)
+    public ResponseEntity<?> login(@PathVariable(value="email") String email, @PathVariable(value="password") String password)
     {
-        return _userService.login(email,password);
+        User user =  _userService.login(email,password);
+        if (user == null)
+            return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
+
+            return ResponseEntity.ok(user);
     }
 
     @RequestMapping(value="/info/{id}")
@@ -39,6 +48,17 @@ public class UserController {
         return _userService.getInfo(id);
     }
 
+    @RequestMapping(value="/get", method = RequestMethod.GET)
+    public List<User> getAll()
+    {
+        return _userService.getAll();
+    }
 
+    @RequestMapping(value="/update", method = RequestMethod.POST)
+    public ResponseEntity getAll(@RequestBody UserUpdateViewModel user)
+    {
+        _userService.update(user);
+        return  ResponseEntity.ok(null);
+    }
 
 }

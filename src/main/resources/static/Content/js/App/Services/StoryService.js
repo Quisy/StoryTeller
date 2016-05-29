@@ -12,25 +12,13 @@
 
     return {
         getAll: function () {
-            return storiesResource.getAll({action:'get'},function(data) {
-                console.log(data);
-            }, function(error) {
-                console.log(error)
-            });
+            return storiesResource.getAll({action:'get'});
         },
         getForUser: function(userId){
-            return storiesResource.get({action:'getUsers', id:userId},function(data) {
-                console.log(data);
-            }, function(error) {
-                console.log(error)
-            });
+            return storiesResource.get({action:'getUsers', id:userId});
         },
         add: function(story){
-            storiesResource.add({action:'add'}, story,function(data) {
-                console.log(data);
-            }, function(error) {
-                console.log(error)
-            });
+            storiesResource.add({action:'add'}, story);
         }
 
     }

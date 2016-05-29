@@ -1,20 +1,42 @@
-﻿var UserController = function ($scope, storyService, $log, userService, authenticationService, $location) {
+﻿var UserController = function ($scope, storyService, $log, userService, authenticationService, $window, roleService) {
 
+    $scope.users = [];
     $scope.user = {};
+    $scope.roles = roleService.getAll();
 
     var init = function () {
         if (!authenticationService.isLogged())
-            $location.path("/");
+            $window.location.href = '/';
 
         $scope.user = userService.getInfo(authenticationService.getUserId());
+
     };
 
 
     init();
 
+    
+    $scope.getUsers = function()
+    {
+        $scope.users = userService.getAll();
+    };
+
+    $scope.getUser = function(userId)
+    {
+        
+        $scope.user = userService.getInfo(userId);
+    };
+
+    $scope.updateUser = function()
+    {
+        userService.update($scope.user);
+        $window.location.reload();
+    };
+
     // STORIES PAGING
 
     $scope.user.$promise.then(function(){
+        console.log($scope.user.stories);
         $scope.filteredStories = []
             , $scope.currentPage = 1
             , $scope.numPerPage = 5

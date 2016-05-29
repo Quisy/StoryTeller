@@ -17,5 +17,7 @@ App.controller('userController', UserController);
 //Services
 App.factory('storyService', StoryService);
 App.factory('userService', UserService);
+App.factory('roleService', RoleService);
 App.factory('authenticationService', AuthenticationService);
+
 

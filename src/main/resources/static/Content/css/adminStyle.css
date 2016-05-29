@@ -17,66 +17,58 @@ body {
 
 .maxHeight {
     height: 100%;
-    
+
 }
 
 .halfHeight {
     height: 50%;
 }
 
-
 .content {
-    background-color:#00212B;
+    background-color: #00212B;
 }
 
 .scrollBars-auto {
     overflow: auto;
 }
 
-
-
 .menuCol {
-    background:black;
+    background: black;
     height: 100%;
     padding: 30px 0;
     border: solid black 1px;
 }
 
-    .menuCol > li.active > a,
-    .menuCol > li.active > a:hover,
-    .menuCol > li.active > a:focus {
-        color: black;
-        background-color: #5a796c;
-        font-family: "BebasNeue";
-    }
+.menuCol > li.active > a,
+.menuCol > li.active > a:hover,
+.menuCol > li.active > a:focus {
+    color: black;
+    background-color: #5a796c;
+    font-family: "BebasNeue";
+}
 
-    .menuCol > .menu-left > a {
-        background-color: rgb(38, 45, 44);
-        color: white;
-        border: none;
-    }
+.menuCol > .menu-left > a {
+    background-color: rgb(38, 45, 44);
+    color: white;
+    border: none;
+}
 
-    .menuCol > .menu-left > a.active {
-        background-color: #5a796c;
-        font-weight: bold;
-    }
+.menuCol > .menu-left > a.active {
+    background-color: #5a796c;
+    font-weight: bold;
+}
 
-    .menuCol > .menu-left > a:hover,
-    .menuCol > .menu-left > a:focus {
-        background-color: #5a796c;
-        font-weight: bold;
-    }
-
-
-
-
-
+.menuCol > .menu-left > a:hover,
+.menuCol > .menu-left > a:focus {
+    background-color: #5a796c;
+    font-weight: bold;
+}
 
 /*NAV BAR*/
 
 .topBar {
     background-color: black;
-    margin:0;
+    margin: 0;
 }
 
 .navbar-collapse > ul > li > a:link,
@@ -90,3 +82,21 @@ body {
     background-color: #00212B;
     color: white;
 }
+
+/*USERS*/
+.userList {
+    margin: 2%;
+    background-color: #f1e9d2;
+    min-height: 96%;
+}
+
+.userList > .user {
+
+}
+
+.userDetails {
+    background-color: #f1e9d2;
+    margin: 2%;
+    height: 96%;
+}
+

@@ -28,13 +28,14 @@ public class StoryController {
     @RequestMapping(value="/get", method=RequestMethod.GET)
     @ResponseBody
     public List<Story> getAll() {
+        List<Story> x = _storyService.getAll();
         return _storyService.getAll();
     }
 
     @RequestMapping(value="/get/{id}", method=RequestMethod.GET)
     @ResponseBody
     public String getById(@PathVariable(value="id") int id) {
-        return "dupa";
+        return "xx";
     }
 
     @RequestMapping(value="/getUsers/{id}", method=RequestMethod.GET)

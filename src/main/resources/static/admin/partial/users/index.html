@@ -1,0 +1,70 @@
+<div class="row">
+    <div class="col-sm-4 maxHeight scrollBars-auto" ng-init="getUsers()">
+        <div class="userList">
+            <h2>Users</h2>
+            <hr>
+            <Label>Search: <input type="text" class="form-control" ng-model="searchText"
+                                  placeholder="Search for..."></Label>
+            <div class="list-group" ng-repeat="user in  users| filter:searchText">
+                <div>
+                    <button type="button" class="list-group-item" ng-click="getUser(user.id)">
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <img class="img-circle" src="http://placehold.it/50x50"/>
+                            </div>
+                            <div class="col-xs-8">
+                                <div class="col-xs-12">
+                                    {{user.name}} {{user.surname}}
+                                </div>
+                                <div class="col-xs-12">
+                                    {{user.nickName}}
+                                </div>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8 maxHeight">
+        <div class="userDetails">
+            <h2>Details</h2>
+            <hr>
+            <div class="col-md-12">
+                <div class="col-lg-6 col-md-6 text-center">
+                    <img class="img-circle" src="http://placehold.it/200x200"/>
+                    <button type="button" class="btn btn-default">Change photo</button>
+                </div>
+                <form ng-submit="updateUser()">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" ng-model="user.name">
+                        </div>
+                        <div class="form-group">
+                            <label for="surname">Surname</label>
+                            <input type="text" class="form-control" id="surname" ng-model="user.surname">
+                        </div>
+                        <div class="form-group">
+                            <label for="nickname">Nickname</label>
+                            <input type="text" class="form-control" id="nickname" ng-model="user.nickName">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-control" id="email" ng-model="user.email">
+                        </div>
+                        <div class="form-group">
+                            <label for="role">Role</label>
+                            <select name="repeatSelect" id="role"  ng-model="user.role" class="form-control"
+                                ng-options="role.name for role in roles track by role.id">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-lg-offset-6">
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
