@@ -15,7 +15,7 @@ public interface IUserService<T> {
     T register(UserRegisterViewModel user);
     void update(UserUpdateViewModel entity);
     void updateAvatar(MultipartFile file, long userId);
-    void delete(T entity);
+    void delete(long id);
     T getInfo(long id);
     List<T> getAll();
 }

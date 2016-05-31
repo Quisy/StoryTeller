@@ -57,7 +57,7 @@ body {
 
     .story > .text {
         width: 100%;
-        height: 400px;
+        height: 200px;
         background-image: background-color: transparent;
     }
 
@@ -163,5 +163,17 @@ body {
 }
 
 
+
+.avatar-min
+{
+    height: 30px;
+    width: 30px;
+}
+
+.avatar-big
+{
+    height: 200px;
+    width: 200px;
+}
 
 

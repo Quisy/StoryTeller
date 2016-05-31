@@ -4,7 +4,7 @@
         <hr/>
         <div class="row">
             <div class="col-lg-6 col-md-6 text-center">
-                <img class="img-circle" src="data:image/png;base64,{{user.avatar}}"/>
+                <img class="img-circle avatar-big" src="data:image/png;base64,{{user.avatar}}"/>
                 <input type="file" file-model="avatar"/>
                 <button type="button" class="btn btn-default" ng-click="uploadFile()">Change photo</button>
             </div>
@@ -38,14 +38,12 @@
             <thead>
             <tr>
                 <th>Title</th>
-                <th>Date</th>
                 <th>Content</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="story in filteredStories | filter:searchText">
             <td>{{story.title}}</td>
-            <td>data</td>
             <td>{{story.text | limitTo: 50}}...</td>
             </tr>
             </tbody>

@@ -2,6 +2,7 @@ package com.quisy.controllers;
 
 import com.quisy.models.Story;
 import com.quisy.models.StoryAddViewModel;
+import com.quisy.models.StoryViewModel;
 import com.quisy.services.interfaces.IStoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +28,7 @@ public class StoryController {
 
     @RequestMapping(value="/get", method=RequestMethod.GET)
     @ResponseBody
-    public List<Story> getAll() {
-        List<Story> x = _storyService.getAll();
+    public List<StoryViewModel> getAll() {
         return _storyService.getAll();
     }
 

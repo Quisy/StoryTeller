@@ -30,7 +30,13 @@
         $window.location.reload();
 
     };
-    
+
+
+    $scope.delete = function()
+    {
+        userService.delete($scope.user.id);
+        $window.location.reload();
+    };
 
     $scope.getUsers = function()
     {

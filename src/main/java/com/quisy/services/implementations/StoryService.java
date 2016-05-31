@@ -3,6 +3,7 @@ package com.quisy.services.implementations;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.quisy.models.Story;
 import com.quisy.models.StoryAddViewModel;
+import com.quisy.models.StoryViewModel;
 import com.quisy.models.User;
 import com.quisy.repositories.interfaces.IStoryDAO;
 import com.quisy.repositories.interfaces.IUserDAO;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -51,8 +53,21 @@ public class StoryService implements IStoryService<Story>{
     }
 
     @Override
-    public List<Story> getAll() {
-        return _storyRepository.getAll();
+    public List<StoryViewModel> getAll() {
+        List<Story> stories = _storyRepository.getAll();
+        List<StoryViewModel> returnStories = new ArrayList<>();
+
+        for(Story story:stories)
+        {
+            StoryViewModel tempStory = new StoryViewModel();
+            tempStory.setTitle(story.getTitle());
+            tempStory.setText(story.getText());
+            tempStory.setUserNickName(story.getOwner().getNickName());
+            tempStory.setUserAvatar(story.getOwner().getAvatar());
+            returnStories.add(tempStory);
+        }
+
+        return returnStories;
     }
 
     @Override

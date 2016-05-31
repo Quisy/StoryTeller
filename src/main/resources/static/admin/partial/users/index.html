@@ -32,7 +32,7 @@
             <hr>
             <div class="col-md-12">
                 <div class="col-lg-6 col-md-6 text-center">
-                    <img class="img-circle" src="data:image/png;base64,{{user.avatar}}"/>
+                    <img class="img-circle avatar-big" src="data:image/png;base64,{{user.avatar}}"/>
                     <input type="file" file-model="avatar"/>
                     <button type="button" class="btn btn-default" ng-click="uploadFile()">Change photo</button>
                 </div>
@@ -63,6 +63,7 @@
                     </div>
                     <div class="col-lg-6 col-lg-offset-6">
                         <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-danger" ng-click="delete()">Delete user</button>
                     </div>
                 </form>
             </div>

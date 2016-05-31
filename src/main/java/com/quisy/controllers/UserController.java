@@ -64,6 +64,12 @@ public class UserController {
         return ResponseEntity.ok(null);
     }
 
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
+    public ResponseEntity delete(@PathVariable(value = "id") long id) {
+        _userService.delete(id);
+        return ResponseEntity.ok(null);
+    }
+
     @RequestMapping(value = "/uploadAvatar/{userId}", method = RequestMethod.POST, headers = "content-type=multipart/form-data")
     public ResponseEntity<?> uploadAvatar(@RequestBody MultipartFile file, @PathVariable(value = "userId") long userId) {
         _userService.updateAvatar(file, userId);

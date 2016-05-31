@@ -2,7 +2,7 @@
  * Created by Mariusz on 2016-05-26.
  */
 
-var UserService =  function ($resource, authenticationService) {
+var UserService =  function ($resource) {
 
     var userResource = $resource('http://localhost:8080/api/users/:action/:id', { action: '@action', id: '@id' }, {
         register : {
@@ -16,6 +16,9 @@ var UserService =  function ($resource, authenticationService) {
             isArray:true
         },
         update : {
+            method:'POST'
+        },
+        delete : {
             method:'POST'
         },
         uploadAvatar : {
@@ -48,6 +51,9 @@ var UserService =  function ($resource, authenticationService) {
         },
         update: function (user, success, error) {
             return userResource.update({action:'update', id:null}, user);
+        },
+        delete: function (userId, success, error) {
+            return userResource.update({action:'delete', id:userId});
         },
         uploadAvatar: function (file, userId, success, error) {
             return userResource.uploadAvatar({action:'uploadAvatar', id:userId}, file);

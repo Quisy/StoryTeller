@@ -1,10 +1,8 @@
 package com.quisy.services.implementations;
 
-import com.quisy.models.Role;
-import com.quisy.models.User;
-import com.quisy.models.UserRegisterViewModel;
-import com.quisy.models.UserUpdateViewModel;
+import com.quisy.models.*;
 import com.quisy.repositories.interfaces.IRoleDAO;
+import com.quisy.repositories.interfaces.IStoryDAO;
 import com.quisy.repositories.interfaces.IUserDAO;
 import com.quisy.services.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,21 +24,22 @@ public class UserService implements IUserService<User> {
 
     private final IUserDAO<User> _userRepository;
     private final IRoleDAO<Role> _roleRepository;
+    private final IStoryDAO<Story> _storyRepository;
 
     @Autowired
-    public UserService(IUserDAO<User> userRepository, IRoleDAO<Role> roleRepository){
+    public UserService(IUserDAO<User> userRepository, IRoleDAO<Role> roleRepository, IStoryDAO<Story> storyRepository) {
         _userRepository = userRepository;
         _roleRepository = roleRepository;
+        _storyRepository = storyRepository;
     }
 
 
     @Override
     public User login(String email, String password) {
-        try{
+        try {
             return _userRepository.getAll().stream().filter(
                     u -> u.getEmail().equals(email) && u.getPassword().equals(password)).findFirst().get();
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             return null;
         }
     }
@@ -64,8 +63,7 @@ public class UserService implements IUserService<User> {
             } else {
                 return null;
             }
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             return null;
         }
 
@@ -95,13 +93,18 @@ public class UserService implements IUserService<User> {
     }
 
     @Override
-    public void delete(User user) {
-        _userRepository.delete(user);
+    public void delete(long id) {
+        User user = _userRepository.getById(id);
+        if (user != null)
+        {
+            user.getStories().forEach(_storyRepository::delete);
+            _userRepository.delete(user);
+        }
     }
 
     @Override
     public User getInfo(long id) {
-       return _userRepository.getById(id);
+        return _userRepository.getById(id);
     }
 
     @Override

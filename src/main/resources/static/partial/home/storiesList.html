@@ -3,7 +3,7 @@
         <div class="row story" ng-repeat="story in filteredStories">
             <div class="col-sm-12">
                 <h2>{{story.title}}</h2>
-                <h4>Author, date</h4>
+                <img class="img-circle avatar-min" src="data:image/png;base64,{{story.userAvatar}}"/>  {{story.userNickName}}
                 <hr />
             </div>
             <div class="col-sm-12 text">
@@ -19,8 +19,3 @@
 </div>
 
 
-
-
-<div class="test">
-    sdad
-</div>
